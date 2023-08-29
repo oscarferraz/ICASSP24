@@ -40,95 +40,78 @@ Date: March 2023
 __constant__ unsigned char d_LUT_VN[EDGES];
 __constant__ unsigned char d_LUT_CN[EDGES];
 
-__global__ void GPU_min_sum(unsigned short * d_sindrome, unsigned char * d_LPi, unsigned char * d_wrong_equations);
+__global__ void GPU_min_sum(unsigned short * d_sindrome, unsigned char * d_LPi, unsigned char * d_wrong_equations, unsigned char * teta, unsigned char * bar);
 
 
-
-
-//==============================================//
-// G L O B A L      V A R I A B L E S			//
-//==============================================//
-short int max_bit_node_degree;	  // --> Maximum bit node degree
-short int max_check_node_degree;  // --> Maximum check node degree
-struct node_bit *bitnode;		  // --> bitnode[i] - means the bit node i of the LDPC code
-struct node_check *checknode;	  // --> checknode[j] - means the check node j of the LDPC code
-struct edge_check_to_bit *Lrji;	  // --> Message sent from CN j to BN i
-struct edge_bit_to_check *Lqij;	  // --> Message sent from BN i to CN j
-float  *LQi;					  // --> Pseudo-probabilities a posteriori of decoded simbols 
-char   *transmited_code_word;	  // --> word transmited by the LDPC encoder
-float  *received_word;			  // --> word received by the decoder in order to be decoded
-//char   *decoded_word;
-float  snr_rms;
-char   normalized_min_sum;
-char   universal_min_sum;		  // --> decoding is made independent of the channel caracteristics
-float  normalization_factor;	  // --> decoding uses normalization factors
 struct timespec start, end;		  
 
 //**************************************************************************************************
 //global memory
-__global__ void GPU_min_sum(unsigned short * d_sindrome, unsigned char * d_LPi, unsigned char * d_wrong_equations){
+__global__ void GPU_min_sum(unsigned short * d_sindrome, unsigned char * d_LPi, unsigned char * d_wrong_equations, unsigned char * teta, unsigned char * bar){
 
-    //unsigned int x=threadIdx.x+blockIdx.x*blockDim.x;
+    //unsigned char x=threadIdx.x+blockIdx.x*blockDim.x;
         
-	char num_iter;
-	char teta=0;
-	char bar=5;
-	short k;
+	unsigned char num_iter;
+	unsigned short k;
 
 	for(num_iter=0; num_iter<MAX_ITER;num_iter++){ 
-		if(teta && bar > 1){
+        
+        if(threadIdx.x==0){
+            if(teta[0] && bar[0] > 1){
 
-			bar = bar - 1;
-		}
-		teta=1;
-		k=0;
-		for(int i=0; i<M;i++){ 
-			short sum=0;
-			for(int j=0; j<8;j++){ 
-				sum=sum+d_LPi[d_LUT_CN[k+j]];
-			}
-			d_sindrome[i]=sum & 0x1;
-			k=k+8;
-			//printf("sum=%d\n", sum);
-			//printf("sindrome[%d]=%d\n", i, sindrome[i]);
-		}
+                bar[0] = bar[0] - 1;
+            }
+            teta[0]=1;
+        }
+        __syncthreads();
 
 
-		k=0;
-		for(int i=0; i<M;i++){ 
-			short sum=0;
-			for(int j=0; j<5;j++){ 
-				sum=sum+d_sindrome[d_LUT_VN[k+j]];
+        if(threadIdx.x<64){
+            k=threadIdx.x*8;
+            unsigned short sum=0;
+            for(unsigned char j=0; j<8;j++){ 
+                sum=sum+d_LPi[d_LUT_CN[k+j]];
+            }
+            d_sindrome[threadIdx.x]=sum & 0x1;
+            //printf("sum=%d\n", sum);
+            //printf("sindrome[%d]=%d\n", i, sindrome[i]);  
+        }
+        __syncthreads();
 
-			}
-			d_wrong_equations[i]=sum;
-			k=k+5;
-			
-		}
+        
+        if(threadIdx.x<64){
+            k=threadIdx.x*5;
+            
+            unsigned short sum=0;
+            for(unsigned char j=0; j<5;j++){ 
+                sum=sum+d_sindrome[d_LUT_VN[k+j]];
+            }
+            d_wrong_equations[threadIdx.x]=sum;
+        }
 
-		for(int i=M; i<N;i++){ 
-			short sum=0;
-			for(int j=0; j<3;j++){ 
-				sum=sum+d_sindrome[d_LUT_VN[k+j]];
-			}
-			d_wrong_equations[i]=sum;
-			k=k+3;
-			
-		}
+        if(threadIdx.x>63){
+            k=5*63+threadIdx.x*3;
 
-		for(int i=0; i<N;i++){ 
-			if(d_wrong_equations[i]>=bar){
-				if(d_LPi[i]==0){
-					d_LPi[i]=1;
-				}
-				else{
-					d_LPi[i]=0;
-				}
-				teta=0;
-				
-			}
+            unsigned short sum=0;
+            for(unsigned char j=0; j<3;j++){ 
+                sum=sum+d_sindrome[d_LUT_VN[k+j]];
+            }
+            d_wrong_equations[threadIdx.x]=sum;
+        }
+        __syncthreads();
+
+		
+        if(d_wrong_equations[threadIdx.x]>=bar[0]){
+            if(d_LPi[threadIdx.x]==0){
+                d_LPi[threadIdx.x]=1;
+            }
+            else{
+                d_LPi[threadIdx.x]=0;
+            }
+            teta[0]=0;
+            
+        }
 			//printf("sindrome[%d]=%d\n", i, L[i]);
-		}
 	}
 
 } 
@@ -150,7 +133,7 @@ int  main(){
     //======================================================================================================================================================================
     //kernel dimensions
 
-    dim3 threadsPerBlock(1,1,1);
+    dim3 threadsPerBlock(128,1,1);
     dim3 numBlocks(1,1,1);
 
     //======================================================================================================================================================================
@@ -164,6 +147,7 @@ int  main(){
     size_t size_LPi=(sizeof(unsigned char)*N); 
     size_t size_LUT=(sizeof(unsigned char)*EDGES); 
     size_t size_sindrome=(sizeof(unsigned short)*M); 
+    size_t size_char=(sizeof(unsigned char)); 
 
     //==================================================================================================================LPi====================================================
     //variables declaration
@@ -173,6 +157,8 @@ int  main(){
     unsigned short *d_sindrome=NULL;
     unsigned char *d_wrong_equations=NULL;
     unsigned char *d_LPi=NULL;
+    unsigned char *bar=NULL;
+    unsigned char *teta=NULL;
 
 
     //======================================================================================================================================================================
@@ -351,6 +337,30 @@ int  main(){
         exit(EXIT_FAILURE);
     }
 
+    err=cudaMalloc((void **)&teta, size_char);
+    if(err!=cudaSuccess){
+        fprintf(stderr, "Failed to allocate device teta (error code %d)!\n", cudaGetLastError());
+        exit(EXIT_FAILURE);
+    }
+
+    err=cudaMemset(teta, 0, size_char);
+    if(err!=cudaSuccess){
+        fprintf(stderr, "Failed to set device d_sindrome (error code %d)!\n", cudaGetLastError());
+        exit(EXIT_FAILURE);
+    }
+
+    err=cudaMalloc((void **)&bar, size_char);
+    if(err!=cudaSuccess){
+        fprintf(stderr, "Failed to allocate device bar (error code %d)!\n", cudaGetLastError());
+        exit(EXIT_FAILURE);
+    }
+
+    err=cudaMemset(bar, 5, size_char);
+    if(err!=cudaSuccess){
+        fprintf(stderr, "Failed to set device bar (error code %d)!\n", cudaGetLastError());
+        exit(EXIT_FAILURE);
+    }
+
 
     //======================================================================================================================================================================
     //copy data to device
@@ -377,7 +387,7 @@ int  main(){
 
     //======================================================================================================================================================================
     //execute the kernel
-    GPU_min_sum<<<numBlocks, threadsPerBlock>>>(d_sindrome, d_LPi, d_wrong_equations);
+    GPU_min_sum<<<numBlocks, threadsPerBlock>>>(d_sindrome, d_LPi, d_wrong_equations, teta, bar);
     if(err!=cudaSuccess){
         fprintf(stderr, "Failed to launch the kernel (error code %d)!\n", cudaGetLastError());
         exit(EXIT_FAILURE);
@@ -414,6 +424,17 @@ int  main(){
         exit(EXIT_FAILURE);
     }
     
+    err=cudaFree(teta);
+    if(err!=cudaSuccess){
+        fprintf(stderr, "Failed to free the d_teta from the device (error code %d)!\n", cudaGetLastError());
+        exit(EXIT_FAILURE);
+    }
+
+    err=cudaFree(bar);
+    if(err!=cudaSuccess){
+        fprintf(stderr, "Failed to free the d_bar from the device (error code %d)!\n", cudaGetLastError());
+        exit(EXIT_FAILURE);
+    }
 
     //======================================================================================================================================================================
     //Print Results
