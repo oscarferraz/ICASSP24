@@ -1,24 +1,24 @@
-==28384== NVPROF is profiling process 28384, command: ./min_sum
-==28384== Warning: Unified Memory Profiling is not supported on the underlying platform. System requirements for unified memory can be found at: http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#um-requirements
-==28384== Profiling application: ./min_sum
-==28384== Profiling result:
+==30107== NVPROF is profiling process 30107, command: ./min_sum
+==30107== Warning: Unified Memory Profiling is not supported on the underlying platform. System requirements for unified memory can be found at: http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#um-requirements
+==30107== Profiling application: ./min_sum
+==30107== Profiling result:
             Type  Time(%)      Time     Calls       Avg       Min       Max  Name
- GPU activities:   43.73%  11.274us         5  2.2540us  1.9210us  3.3630us  GPU_min_sum_equations_and_decision(unsigned short*, unsigned char*, unsigned char*, unsigned char*)
-                   41.24%  10.632us         5  2.1260us  1.6010us  3.3630us  GPU_min_sum_sindrome(unsigned short*, unsigned char*, unsigned char*, unsigned char*)
-                    7.20%  1.8570us         3     619ns     256ns  1.3450us  [CUDA memcpy HtoD]
-                    6.83%  1.7610us         2     880ns     160ns  1.6010us  [CUDA memset]
-                    1.00%     257ns         1     257ns     257ns     257ns  [CUDA memcpy DtoH]
-      API calls:   99.38%  249.55ms         2  124.78ms  20.096us  249.53ms  cudaHostAlloc
-                    0.22%  557.82us         4  139.46us  13.792us  511.20us  cudaMalloc
-                    0.13%  323.30us        10  32.329us  25.408us  65.056us  cudaLaunchKernel
-                    0.09%  220.16us         2  110.08us  24.576us  195.58us  cudaFreeHost
-                    0.07%  181.44us         4  45.360us  12.608us  134.02us  cudaFree
-                    0.04%  90.816us        97     936ns     448ns  24.352us  cuDeviceGetAttribute
-                    0.03%  67.648us         2  33.824us  29.472us  38.176us  cudaMemcpy
-                    0.02%  58.112us         2  29.056us  17.408us  40.704us  cudaMemset
-                    0.02%  47.488us         2  23.744us  22.656us  24.832us  cudaMemcpyToSymbol
-                    0.00%  9.1200us         1  9.1200us  9.1200us  9.1200us  cuDeviceTotalMem
-                    0.00%  4.6720us         3  1.5570us     928ns  2.4000us  cuDeviceGetCount
-                    0.00%  2.4960us         2  1.2480us  1.0560us  1.4400us  cuDeviceGet
-                    0.00%  1.5680us         1  1.5680us  1.5680us  1.5680us  cuDeviceGetName
-                    0.00%     704ns         1     704ns     704ns     704ns  cuDeviceGetUuid
+ GPU activities:   42.89%  12.649us         5  2.5290us  2.2420us  3.2980us  GPU_min_sum_equations_and_decision(unsigned short*, unsigned char*, unsigned char*, unsigned char*)
+                   39.95%  11.782us         5  2.3560us  1.9850us  3.7460us  GPU_min_sum_sindrome(unsigned short*, unsigned char*, unsigned char*, unsigned char*)
+                    9.01%  2.6580us         2  1.3290us     320ns  2.3380us  [CUDA memset]
+                    7.27%  2.1450us         3     715ns     224ns  1.6970us  [CUDA memcpy HtoD]
+                    0.87%     257ns         1     257ns     257ns     257ns  [CUDA memcpy DtoH]
+      API calls:   99.06%  255.10ms         2  127.55ms  22.048us  255.08ms  cudaHostAlloc
+                    0.43%  1.0982ms         4  274.56us  14.656us  1.0483ms  cudaMalloc
+                    0.13%  327.10us         2  163.55us  29.152us  297.95us  cudaMemcpy
+                    0.12%  311.20us        10  31.120us  25.184us  66.816us  cudaLaunchKernel
+                    0.09%  224.32us         2  112.16us  25.088us  199.23us  cudaFreeHost
+                    0.08%  194.43us         4  48.608us  12.160us  144.32us  cudaFree
+                    0.04%  92.384us        97     952ns     448ns  26.592us  cuDeviceGetAttribute
+                    0.03%  77.600us         2  38.800us  18.144us  59.456us  cudaMemset
+                    0.03%  66.208us         2  33.104us  29.888us  36.320us  cudaMemcpyToSymbol
+                    0.00%  10.912us         1  10.912us  10.912us  10.912us  cuDeviceTotalMem
+                    0.00%  5.3760us         3  1.7920us  1.0560us  2.4960us  cuDeviceGetCount
+                    0.00%  2.1120us         2  1.0560us     768ns  1.3440us  cuDeviceGet
+                    0.00%  1.4400us         1  1.4400us  1.4400us  1.4400us  cuDeviceGetName
+                    0.00%     672ns         1     672ns     672ns     672ns  cuDeviceGetUuid

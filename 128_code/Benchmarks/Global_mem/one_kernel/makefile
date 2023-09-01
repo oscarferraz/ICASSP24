@@ -239,7 +239,7 @@ ALL_CCFLAGS += $(addprefix -Xcompiler ,$(EXTRA_CCFLAGS))
 SAMPLE_ENABLED := 1
 
 ifeq ($(TARGET_OS),linux)
-ALL_CCFLAGS += -Xcompiler -Wall -O3 --resource-usage
+ALL_CCFLAGS += -Xcompiler -Wall -O3 --resource-usage -DCODE128
 endif
 
 ALL_LDFLAGS :=
