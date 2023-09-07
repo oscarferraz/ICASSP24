@@ -83,7 +83,11 @@ __global__ void GPU_min_sum(unsigned char * d_LPi){
     teta[0]=0;
     bar[0]=5;
 
+    __syncthreads();   
+
 	for(num_iter=0; num_iter<MAX_ITER;num_iter++){ 
+
+        
         
         if(threadIdx.x==0){
             if(teta[0] && bar[0] > 1){
@@ -140,7 +144,7 @@ __global__ void GPU_min_sum(unsigned char * d_LPi){
             teta[0]=0;
             
         }
-        __syncthreads();
+       
 			//printf("sindrome[%d]=%d\n", i, L[i]);
 	}
     d_LPi[threadIdx.x]=s_LPi[threadIdx.x];
