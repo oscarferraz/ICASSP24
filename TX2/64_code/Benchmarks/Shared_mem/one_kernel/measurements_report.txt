@@ -1,0 +1,26 @@
+/usr/local/cuda-10.2/bin/nvcc -ccbin gcc -I../../common/inc -I /usr/local/cuda-10.2/samples/common/inc  -m64 -Xptxas -v -maxrregcount=32     -Xcompiler -Wall -O3 --resource-usage -DPRINT -DCODE64 -gencode arch=compute_62,code=sm_62 -gencode arch=compute_62,code=compute_62 -o min_sum.o -c min_sum.cu
+/usr/local/cuda-10.2/bin/nvcc -ccbin gcc   -m64 -Xptxas -v -maxrregcount=32     -Xcompiler -Wall -O3 --resource-usage -DPRINT -DCODE64   -gencode arch=compute_62,code=sm_62 -gencode arch=compute_62,code=compute_62 -o min_sum min_sum.o  -lcusolver -lcusparse
+rm -f min_sum.o 
+Execution time = 0.218239 ms
+Execution time = 0.177120 ms
+Execution time = 0.234143 ms
+Execution time = 0.514463 ms
+Execution time = 0.187328 ms
+Execution time = 0.189664 ms
+Execution time = 0.519391 ms
+Execution time = 0.188575 ms
+Execution time = 0.203360 ms
+Execution time = 0.190368 ms
+Execution time = 0.189760 ms
+Execution time = 0.181280 ms
+Execution time = 0.195007 ms
+Execution time = 0.190016 ms
+Execution time = 0.194432 ms
+Execution time = 0.192736 ms
+Execution time = 0.181568 ms
+Execution time = 0.165984 ms
+Execution time = 0.166912 ms
+Execution time = 0.188991 ms
+/usr/local/cuda-10.2/bin/nvcc -ccbin gcc -I../../common/inc -I /usr/local/cuda-10.2/samples/common/inc  -m64 -Xptxas -v -maxrregcount=32     -Xcompiler -Wall -O3 --resource-usage -DCODE64 -gencode arch=compute_62,code=sm_62 -gencode arch=compute_62,code=compute_62 -o min_sum.o -c min_sum.cu
+/usr/local/cuda-10.2/bin/nvcc -ccbin gcc   -m64 -Xptxas -v -maxrregcount=32     -Xcompiler -Wall -O3 --resource-usage -DCODE64   -gencode arch=compute_62,code=sm_62 -gencode arch=compute_62,code=compute_62 -o min_sum min_sum.o  -lcusolver -lcusparse
+rm -f min_sum.o 

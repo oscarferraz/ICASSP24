@@ -1,0 +1,66 @@
+/usr/local/cuda-11.4/bin/nvcc -ccbin gcc -I../../common/inc -I /usr/local/cuda-11.4/samples/common/inc  -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=4456448   -Xcompiler -Wall -O3 --resource-usage -DPRINT -DCODE64 -gencode arch=compute_75,code=sm_75 -gencode arch=compute_75,code=compute_75 -o min_sum.o -c min_sum.cu
+/usr/local/cuda-11.4/bin/nvcc -ccbin gcc   -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=4456448   -Xcompiler -Wall -O3 --resource-usage -DPRINT -DCODE64   -gencode arch=compute_75,code=sm_75 -gencode arch=compute_75,code=compute_75 -o min_sum min_sum.o  -lcusolver -lcusparse
+rm -f min_sum.o 
+BLOCKS=4456448
+Execution time = 162.912909 ms
+BLOCKS=4456448
+Execution time = 141.644669 ms
+BLOCKS=4456448
+Execution time = 162.934248 ms
+BLOCKS=4456448
+Execution time = 164.483513 ms
+BLOCKS=4456448
+Execution time = 141.738678 ms
+BLOCKS=4456448
+Execution time = 163.527841 ms
+BLOCKS=4456448
+Execution time = 153.498635 ms
+BLOCKS=4456448
+Execution time = 142.065132 ms
+BLOCKS=4456448
+Execution time = 164.121576 ms
+BLOCKS=4456448
+Execution time = 142.088662 ms
+BLOCKS=4456448
+Execution time = 163.692018 ms
+BLOCKS=4456448
+Execution time = 149.564397 ms
+BLOCKS=4456448
+Execution time = 142.051007 ms
+BLOCKS=4456448
+Execution time = 164.014062 ms
+BLOCKS=4456448
+Execution time = 142.084915 ms
+BLOCKS=4456448
+Execution time = 163.719418 ms
+BLOCKS=4456448
+Execution time = 143.230708 ms
+BLOCKS=4456448
+Execution time = 142.689825 ms
+BLOCKS=4456448
+Execution time = 149.947487 ms
+BLOCKS=4456448
+Execution time = 142.035973 ms
+/usr/local/cuda-11.4/bin/nvcc -ccbin gcc -I../../common/inc -I /usr/local/cuda-11.4/samples/common/inc  -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=4456448   -Xcompiler -Wall -O3 --resource-usage -DCODE64 -gencode arch=compute_75,code=sm_75 -gencode arch=compute_75,code=compute_75 -o min_sum.o -c min_sum.cu
+/usr/local/cuda-11.4/bin/nvcc -ccbin gcc   -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=4456448   -Xcompiler -Wall -O3 --resource-usage -DCODE64   -gencode arch=compute_75,code=sm_75 -gencode arch=compute_75,code=compute_75 -o min_sum min_sum.o  -lcusolver -lcusparse
+rm -f min_sum.o 
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448
+BLOCKS=4456448

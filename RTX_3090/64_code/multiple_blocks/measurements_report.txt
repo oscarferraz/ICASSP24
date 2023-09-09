@@ -1,0 +1,46 @@
+/usr/local/cuda-11.7/bin/nvcc -ccbin gcc -I../../common/inc -I /usr/local/cuda-11.7/samples/common/inc  -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=4030464   -Xcompiler -Wall -O3 --resource-usage -DPRINT -DCODE64 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_86,code=compute_86 -o min_sum.o -c min_sum.cu
+/usr/local/cuda-11.7/bin/nvcc -ccbin gcc   -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=4030464   -Xcompiler -Wall -O3 --resource-usage -DPRINT -DCODE64   -gencode arch=compute_86,code=sm_86 -gencode arch=compute_86,code=compute_86 -o min_sum min_sum.o  -lcusolver -lcusparse
+rm -f min_sum.o 
+BLOCKS=4030464
+Execution time = 72.609013 ms
+BLOCKS=4030464
+Execution time = 70.727437 ms
+BLOCKS=4030464
+Execution time = 72.379521 ms
+BLOCKS=4030464
+Execution time = 70.697601 ms
+BLOCKS=4030464
+Execution time = 72.549921 ms
+BLOCKS=4030464
+Execution time = 70.583264 ms
+BLOCKS=4030464
+Execution time = 72.664565 ms
+BLOCKS=4030464
+Execution time = 70.880933 ms
+BLOCKS=4030464
+Execution time = 71.593677 ms
+BLOCKS=4030464
+Execution time = 72.710270 ms
+BLOCKS=4030464
+Execution time = 70.754023 ms
+BLOCKS=4030464
+Execution time = 72.420644 ms
+BLOCKS=4030464
+Execution time = 70.780762 ms
+BLOCKS=4030464
+Execution time = 72.634705 ms
+BLOCKS=4030464
+Execution time = 70.728544 ms
+BLOCKS=4030464
+Execution time = 72.594969 ms
+BLOCKS=4030464
+Execution time = 70.865761 ms
+BLOCKS=4030464
+Execution time = 72.735704 ms
+BLOCKS=4030464
+Execution time = 72.644181 ms
+BLOCKS=4030464
+Execution time = 71.882907 ms
+/usr/local/cuda-11.7/bin/nvcc -ccbin gcc -I../../common/inc -I /usr/local/cuda-11.7/samples/common/inc  -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=4030464   -Xcompiler -Wall -O3 --resource-usage -DCODE64 --generate-line-info -gencode arch=compute_86,code=sm_86 -gencode arch=compute_86,code=compute_86 -o min_sum.o -c min_sum.cu
+/usr/local/cuda-11.7/bin/nvcc -ccbin gcc   -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=4030464   -Xcompiler -Wall -O3 --resource-usage -DCODE64 --generate-line-info   -gencode arch=compute_86,code=sm_86 -gencode arch=compute_86,code=compute_86 -o min_sum min_sum.o  -lcusolver -lcusparse
+rm -f min_sum.o 

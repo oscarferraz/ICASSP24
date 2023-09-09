@@ -1,0 +1,20 @@
+==7380== NVPROF is profiling process 7380, command: ./min_sum
+==7380== Warning: Unified Memory Profiling is not supported on the underlying platform. System requirements for unified memory can be found at: http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#um-requirements
+==7380== Profiling application: ./min_sum
+==7380== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   65.38%  9.7440us         1  9.7440us  9.7440us  9.7440us  GPU_min_sum(unsigned char*, unsigned char*, unsigned short*)
+                   31.12%  4.6380us         3  1.5460us     939ns  2.6570us  [CUDA memcpy HtoD]
+                    3.50%     521ns         1     521ns     521ns     521ns  [CUDA memcpy DtoH]
+      API calls:   99.34%  324.34ms         4  81.086ms  14.219us  324.30ms  cudaHostAlloc
+                    0.34%  1.1015ms         3  367.18us  12.083us  1.0735ms  cudaMalloc
+                    0.13%  425.90us         4  106.47us  40.418us  287.30us  cudaMemcpy
+                    0.08%  245.89us         4  61.472us  16.042us  183.03us  cudaFreeHost
+                    0.05%  175.68us         3  58.560us  15.000us  136.83us  cudaFree
+                    0.03%  110.94us        97  1.1430us     625ns  22.448us  cuDeviceGetAttribute
+                    0.03%  86.512us         1  86.512us  86.512us  86.512us  cudaLaunchKernel
+                    0.00%  7.3440us         1  7.3440us  7.3440us  7.3440us  cuDeviceTotalMem
+                    0.00%  5.4690us         3  1.8230us  1.1460us  2.5000us  cuDeviceGetCount
+                    0.00%  3.0730us         2  1.5360us  1.3020us  1.7710us  cuDeviceGet
+                    0.00%  1.8230us         1  1.8230us  1.8230us  1.8230us  cuDeviceGetName
+                    0.00%  1.0420us         1  1.0420us  1.0420us  1.0420us  cuDeviceGetUuid

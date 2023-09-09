@@ -1,0 +1,46 @@
+/usr/local/cuda-11.7/bin/nvcc -ccbin gcc -I../../common/inc -I /usr/local/cuda-11.7/samples/common/inc  -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=1007616   -Xcompiler -Wall -O3 --resource-usage -DPRINT -DCODE256 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_86,code=compute_86 -o min_sum.o -c min_sum.cu
+/usr/local/cuda-11.7/bin/nvcc -ccbin gcc   -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=1007616   -Xcompiler -Wall -O3 --resource-usage -DPRINT -DCODE256   -gencode arch=compute_86,code=sm_86 -gencode arch=compute_86,code=compute_86 -o min_sum min_sum.o  -lcusolver -lcusparse
+rm -f min_sum.o 
+BLOCKS=1007616
+Execution time = 74.521268 ms
+BLOCKS=1007616
+Execution time = 72.453425 ms
+BLOCKS=1007616
+Execution time = 73.827943 ms
+BLOCKS=1007616
+Execution time = 74.583877 ms
+BLOCKS=1007616
+Execution time = 72.665764 ms
+BLOCKS=1007616
+Execution time = 74.385072 ms
+BLOCKS=1007616
+Execution time = 72.658021 ms
+BLOCKS=1007616
+Execution time = 73.255204 ms
+BLOCKS=1007616
+Execution time = 74.614895 ms
+BLOCKS=1007616
+Execution time = 72.320174 ms
+BLOCKS=1007616
+Execution time = 74.335238 ms
+BLOCKS=1007616
+Execution time = 72.557240 ms
+BLOCKS=1007616
+Execution time = 74.253394 ms
+BLOCKS=1007616
+Execution time = 74.321562 ms
+BLOCKS=1007616
+Execution time = 72.539587 ms
+BLOCKS=1007616
+Execution time = 74.517070 ms
+BLOCKS=1007616
+Execution time = 72.989604 ms
+BLOCKS=1007616
+Execution time = 74.328336 ms
+BLOCKS=1007616
+Execution time = 74.473498 ms
+BLOCKS=1007616
+Execution time = 72.349448 ms
+/usr/local/cuda-11.7/bin/nvcc -ccbin gcc -I../../common/inc -I /usr/local/cuda-11.7/samples/common/inc  -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=1007616   -Xcompiler -Wall -O3 --resource-usage -DCODE256 --generate-line-info -gencode arch=compute_86,code=sm_86 -gencode arch=compute_86,code=compute_86 -o min_sum.o -c min_sum.cu
+/usr/local/cuda-11.7/bin/nvcc -ccbin gcc   -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=1007616   -Xcompiler -Wall -O3 --resource-usage -DCODE256 --generate-line-info   -gencode arch=compute_86,code=sm_86 -gencode arch=compute_86,code=compute_86 -o min_sum min_sum.o  -lcusolver -lcusparse
+rm -f min_sum.o 

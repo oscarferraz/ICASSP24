@@ -1,0 +1,66 @@
+/usr/local/cuda-10.2/bin/nvcc -ccbin gcc -I../../common/inc -I /usr/local/cuda-10.2/samples/common/inc  -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=4096   -Xcompiler -Wall -O3 --resource-usage -DPRINT -DCODE64 -gencode arch=compute_53,code=sm_53 -gencode arch=compute_53,code=compute_53 -o min_sum.o -c min_sum.cu
+/usr/local/cuda-10.2/bin/nvcc -ccbin gcc   -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=4096   -Xcompiler -Wall -O3 --resource-usage -DPRINT -DCODE64   -gencode arch=compute_53,code=sm_53 -gencode arch=compute_53,code=compute_53 -o min_sum min_sum.o  -lcusolver -lcusparse
+rm -f min_sum.o 
+BLOCKS=4096
+Execution time = 4.312723 ms
+BLOCKS=4096
+Execution time = 4.270169 ms
+BLOCKS=4096
+Execution time = 4.306108 ms
+BLOCKS=4096
+Execution time = 4.344650 ms
+BLOCKS=4096
+Execution time = 4.291472 ms
+BLOCKS=4096
+Execution time = 4.307671 ms
+BLOCKS=4096
+Execution time = 4.302879 ms
+BLOCKS=4096
+Execution time = 4.292097 ms
+BLOCKS=4096
+Execution time = 4.335588 ms
+BLOCKS=4096
+Execution time = 4.281576 ms
+BLOCKS=4096
+Execution time = 4.286003 ms
+BLOCKS=4096
+Execution time = 4.308452 ms
+BLOCKS=4096
+Execution time = 4.308296 ms
+BLOCKS=4096
+Execution time = 4.287983 ms
+BLOCKS=4096
+Execution time = 4.321941 ms
+BLOCKS=4096
+Execution time = 4.300691 ms
+BLOCKS=4096
+Execution time = 4.326212 ms
+BLOCKS=4096
+Execution time = 4.319234 ms
+BLOCKS=4096
+Execution time = 4.328608 ms
+BLOCKS=4096
+Execution time = 4.283346 ms
+/usr/local/cuda-10.2/bin/nvcc -ccbin gcc -I../../common/inc -I /usr/local/cuda-10.2/samples/common/inc  -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=4096   -Xcompiler -Wall -O3 --resource-usage -DCODE64 -gencode arch=compute_53,code=sm_53 -gencode arch=compute_53,code=compute_53 -o min_sum.o -c min_sum.cu
+/usr/local/cuda-10.2/bin/nvcc -ccbin gcc   -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=4096   -Xcompiler -Wall -O3 --resource-usage -DCODE64   -gencode arch=compute_53,code=sm_53 -gencode arch=compute_53,code=compute_53 -o min_sum min_sum.o  -lcusolver -lcusparse
+rm -f min_sum.o 
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096
+BLOCKS=4096

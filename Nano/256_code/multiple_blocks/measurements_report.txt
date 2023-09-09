@@ -1,0 +1,66 @@
+/usr/local/cuda-10.2/bin/nvcc -ccbin gcc -I../../common/inc -I /usr/local/cuda-10.2/samples/common/inc  -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=1024   -Xcompiler -Wall -O3 --resource-usage -DPRINT -DCODE256 -gencode arch=compute_53,code=sm_53 -gencode arch=compute_53,code=compute_53 -o min_sum.o -c min_sum.cu
+/usr/local/cuda-10.2/bin/nvcc -ccbin gcc   -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=1024   -Xcompiler -Wall -O3 --resource-usage -DPRINT -DCODE256   -gencode arch=compute_53,code=sm_53 -gencode arch=compute_53,code=compute_53 -o min_sum min_sum.o  -lcusolver -lcusparse
+rm -f min_sum.o 
+BLOCKS=1024
+Execution time = 5.175189 ms
+BLOCKS=1024
+Execution time = 5.170553 ms
+BLOCKS=1024
+Execution time = 5.242639 ms
+BLOCKS=1024
+Execution time = 5.171960 ms
+BLOCKS=1024
+Execution time = 5.168574 ms
+BLOCKS=1024
+Execution time = 5.217117 ms
+BLOCKS=1024
+Execution time = 5.212691 ms
+BLOCKS=1024
+Execution time = 5.213159 ms
+BLOCKS=1024
+Execution time = 5.180606 ms
+BLOCKS=1024
+Execution time = 5.178471 ms
+BLOCKS=1024
+Execution time = 5.199149 ms
+BLOCKS=1024
+Execution time = 5.202169 ms
+BLOCKS=1024
+Execution time = 5.215607 ms
+BLOCKS=1024
+Execution time = 5.279776 ms
+BLOCKS=1024
+Execution time = 5.191492 ms
+BLOCKS=1024
+Execution time = 5.197794 ms
+BLOCKS=1024
+Execution time = 5.231544 ms
+BLOCKS=1024
+Execution time = 5.171700 ms
+BLOCKS=1024
+Execution time = 5.245034 ms
+BLOCKS=1024
+Execution time = 5.223264 ms
+/usr/local/cuda-10.2/bin/nvcc -ccbin gcc -I../../common/inc -I /usr/local/cuda-10.2/samples/common/inc  -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=1024   -Xcompiler -Wall -O3 --resource-usage -DCODE256 -gencode arch=compute_53,code=sm_53 -gencode arch=compute_53,code=compute_53 -o min_sum.o -c min_sum.cu
+/usr/local/cuda-10.2/bin/nvcc -ccbin gcc   -m64 -Xptxas -v -maxrregcount=32  -DBLOCKS=1024   -Xcompiler -Wall -O3 --resource-usage -DCODE256   -gencode arch=compute_53,code=sm_53 -gencode arch=compute_53,code=compute_53 -o min_sum min_sum.o  -lcusolver -lcusparse
+rm -f min_sum.o 
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024
+BLOCKS=1024

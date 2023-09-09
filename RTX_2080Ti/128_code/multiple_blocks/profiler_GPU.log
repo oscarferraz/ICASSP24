@@ -1,0 +1,20 @@
+==131035== NVPROF is profiling process 131035, command: ./min_sum
+==131035== Profiling application: ./min_sum
+==131035== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   43.87%  69.998ms         1  69.998ms  69.998ms  69.998ms  GPU_min_sum(unsigned char*, unsigned char*, unsigned char*)
+                   28.13%  44.883ms         3  14.961ms     800ns  44.881ms  [CUDA memcpy HtoD]
+                   28.00%  44.679ms         1  44.679ms  44.679ms  44.679ms  [CUDA memcpy DtoH]
+      API calls:   57.58%  378.01ms         4  94.502ms  4.4100us  258.99ms  cudaHostAlloc
+                   24.32%  159.62ms         4  39.905ms  7.0700us  114.69ms  cudaMemcpy
+                   17.67%  116.00ms         4  29.001ms  22.151us  58.578ms  cudaFreeHost
+                    0.24%  1.5998ms         3  533.28us  5.7620us  1.0785ms  cudaFree
+                    0.10%  679.55us         3  226.52us  3.7560us  585.56us  cudaMalloc
+                    0.06%  376.23us         1  376.23us  376.23us  376.23us  cuDeviceTotalMem
+                    0.02%  114.44us       101  1.1330us     109ns  47.306us  cuDeviceGetAttribute
+                    0.00%  26.983us         1  26.983us  26.983us  26.983us  cudaLaunchKernel
+                    0.00%  17.817us         1  17.817us  17.817us  17.817us  cuDeviceGetName
+                    0.00%  4.9860us         1  4.9860us  4.9860us  4.9860us  cuDeviceGetPCIBusId
+                    0.00%  1.1090us         3     369ns     159ns     780ns  cuDeviceGetCount
+                    0.00%     728ns         2     364ns     130ns     598ns  cuDeviceGet
+                    0.00%     208ns         1     208ns     208ns     208ns  cuDeviceGetUuid
