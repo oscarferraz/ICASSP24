@@ -1,0 +1,15 @@
+RESULTS OF SPA DECODING OF CODE ~/UPMEM/upmem/Float/LDPC_128_64.alist
+
+Code Dimensions: N= 128 K=64
+
+Simulation Parameters:
+Initial SNR = 0.500000
+Final SNR = 0.500000
+SNR Increment = 0.500000
+Maximum number of Iterations = 1
+Number of Simulations = 1
+
+RESULTS:
+
+SNR	BER		UND_BER		BLER		UND_BLER	AVER_ITERATIONS	AVER_TIME_WORD	AVER_TIME_ITER
+0.500	0.000000e+00	0.000000e+00	1.000000e+00	0.000000e+00	0.000000e+00	0.000000e+00	-nan
